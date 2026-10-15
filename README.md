@@ -126,10 +126,9 @@ Each screen shows one **section**: one chart's part of one row.
   section you're on, like *Section 1 of 4 (rightmost) · Chart 7*. Rows are
   worked right to left, so section 1 is the chart on the right.
 - **The instructions** come in big stitch groups: `BS (4DC 13SC 1DC …)`.
-  - **Tap anywhere in the box** to cross off the next group. The group to
+  - **The whole box is one big button.** Each tap, anywhere in it, crosses off
+    just the next group, so a stray tap can never skip ahead. The group to
     work next is highlighted.
-  - **Tap a crossed-off group** to un-cross it, or tap a later group to cross
-    off everything up to it.
   - When the section is all crossed off, tap the box again (or **Next**) to
     move on.
 - **Undo:** un-crosses the last group. **Back:** goes to the start of this

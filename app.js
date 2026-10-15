@@ -732,15 +732,11 @@
     }
   }
   function tapInstr(e) {
+    // The whole box is one big button: every tap crosses off just the next group,
+    // no matter where in the box you tap. Use Undo to step back.
     var step = steps[progress.step], toks = stitchTokens(step);
-    var chip = e && e.target.closest && e.target.closest(".chip");
-    if (chip) {
-      var i = +chip.dataset.i;
-      // tap a crossed-off group to un-cross it (and everything after); tap a later group to cross off up to it
-      progress.done = i < progress.done ? i : i + 1;
-    } else if (progress.done >= toks.length) {
-      return nextStep();
-    } else progress.done++;
+    if (progress.done >= toks.length) return nextStep();
+    progress.done++;
     markStarted(); saveProgress(); renderStep();
   }
   function nextStep() {
