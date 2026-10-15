@@ -1,21 +1,25 @@
 Validation report - charts.json
 Source: Zigz Crochet Mosaic Bookcase Extended Version, written instructions (printed pages 34-60).
 Checked: every body totals 40, only SC/DC stitches, stitch 41 is 1SC or 1DC, colours alternate A/B.
-These rows were NOT corrected. They are stored exactly as printed.
 
-Chart 2, row 24: unrecognised stitch '1OSC' (only SC or DC expected)
-    Printed: BS (1SC 1DC 3SC 1DC 1SC 6DC 1SC 3DC 1SC 2DC 1SC 2DC 4SC 3DC 1OSC) 1SC BS
-Chart 2, row 24: body sums to 31, not 40
-    Printed: BS (1SC 1DC 3SC 1DC 1SC 6DC 1SC 3DC 1SC 2DC 1SC 2DC 4SC 3DC 1OSC) 1SC BS
-Chart 7, row 1: unrecognised stitch '40S' (only SC or DC expected)
-    Printed: BS (40S) 1SC BS
-Chart 7, row 2: unrecognised stitch '40S' (only SC or DC expected)
-    Printed: BS (40S) 1SC BS
-Chart 7 (Reversed), row 4: unrecognised stitch '2S' (only SC or DC expected)
-    Printed: BS (1SC 3DC 2SC 3DC 2S 3DC 2SC 3DC 14SC 1DC 1SC 1DC 3SC 1DC) 1SC BS
-Bookend Left, row 16: unrecognised stitch '3D' (only SC or DC expected)
-    Printed: BS (1SC 6DC 1SC 5DC 1SC 3DC 1SC 5DC 1SC 3D 13SC) 1SC BS
-Bookend Left, row 18: unrecognised stitch '3D' (only SC or DC expected)
-    Printed: BS (1SC 6DC 1SC 5DC 1SC 3DC 1SC 5DC 1SC 3D 13SC) 1SC BS
+Result: 27 charts x 31 rows checked, 0 problems.
 
-27 charts x 31 rows checked. All other rows passed.
+Corrected PDF typos (confirmed by you):
+  Chart 2, row 24
+    Printed:   BS (1SC 1DC 3SC 1DC 1SC 6DC 1SC 3DC 1SC 2DC 1SC 2DC 4SC 3DC 1OSC) 1SC BS
+    Corrected: BS (1SC 1DC 3SC 1DC 1SC 6DC 1SC 3DC 1SC 2DC 1SC 2DC 4SC 3DC 10SC) 1SC BS
+  Chart 7, row 1
+    Printed:   BS (40S) 1SC BS
+    Corrected: BS (40SC) 1SC BS
+  Chart 7, row 2
+    Printed:   BS (40S) 1SC BS
+    Corrected: BS (40SC) 1SC BS
+  Chart 7 (Reversed), row 4
+    Printed:   BS (1SC 3DC 2SC 3DC 2S 3DC 2SC 3DC 14SC 1DC 1SC 1DC 3SC 1DC) 1SC BS
+    Corrected: BS (1SC 3DC 2SC 3DC 2SC 3DC 2SC 3DC 14SC 1DC 1SC 1DC 3SC 1DC) 1SC BS
+  Bookend Left, row 16
+    Printed:   BS (1SC 6DC 1SC 5DC 1SC 3DC 1SC 5DC 1SC 3D 13SC) 1SC BS
+    Corrected: BS (1SC 6DC 1SC 5DC 1SC 3DC 1SC 5DC 1SC 3DC 13SC) 1SC BS
+  Bookend Left, row 18
+    Printed:   BS (1SC 6DC 1SC 5DC 1SC 3DC 1SC 5DC 1SC 3D 13SC) 1SC BS
+    Corrected: BS (1SC 6DC 1SC 5DC 1SC 3DC 1SC 5DC 1SC 3DC 13SC) 1SC BS

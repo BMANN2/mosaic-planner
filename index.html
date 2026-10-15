@@ -2,62 +2,125 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Bookcase">
+<meta name="theme-color" content="#f6f3ee">
 <title>Mosaic Bookcase Planner</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="top">
-  <h1>Mosaic Bookcase Planner</h1>
-  <p class="sub">Arrange the Zigz Crochet bookcase charts, preview the blanket, then get the written pattern.</p>
+  <div class="title-row">
+    <h1>Mosaic Bookcase Planner</h1>
+    <nav class="tabs" aria-label="Views">
+      <button id="tabDesign" class="tab" type="button" aria-pressed="true">Design</button>
+      <button id="tabTrack" class="tab" type="button" aria-pressed="false">Follow pattern</button>
+    </nav>
+  </div>
 </header>
 
-<section class="controls" aria-label="Blanket settings">
-  <div class="group">
-    <label>Columns <input id="cols" type="number" min="1" max="10" value="4"></label>
-    <label>Chart rows <input id="rows" type="number" min="1" max="12" value="6"></label>
-  </div>
-  <div class="group colours">
-    <label class="swatch">A <input id="colA" type="color" value="#2f5d9e"></label>
-    <label class="swatch">B <input id="colB" type="color" value="#ffffff"></label>
-    <label class="swatch">C <input id="colC" type="color" value="#7a4a2a"></label>
-    <label>Shelves
-      <select id="shelf">
-        <option value="A">Colour A</option>
-        <option value="C">Colour C</option>
-      </select>
-    </label>
-  </div>
-  <div class="group">
-    <label class="check"><input id="symbols" type="checkbox"> Show stitch symbols (X = DC)</label>
-    <label class="check"><input id="names" type="checkbox" checked> Show chart names</label>
-  </div>
-  <p id="stats" class="stats"></p>
-</section>
+<!-- ============ DESIGN VIEW ============ -->
+<div id="viewDesign">
+  <section class="controls" aria-label="Blanket settings">
+    <div class="group">
+      <label>Columns <input id="cols" type="number" min="1" max="10" value="4"></label>
+      <label>Chart rows <input id="rows" type="number" min="1" max="12" value="6"></label>
+    </div>
+    <div class="group colours">
+      <label class="swatch">A <input id="colA" type="color" value="#2f5d9e"></label>
+      <label class="swatch">B <input id="colB" type="color" value="#ffffff"></label>
+      <label class="swatch">C <input id="colC" type="color" value="#7a4a2a"></label>
+      <label>Shelves
+        <select id="shelf">
+          <option value="A">Colour A</option>
+          <option value="C">Colour C</option>
+        </select>
+      </label>
+    </div>
+    <div class="group">
+      <label class="check"><input id="symbols" type="checkbox"> Show stitch symbols (X = DC)</label>
+      <label class="check"><input id="names" type="checkbox" checked> Show chart names</label>
+      <label class="check"><input id="lock" type="checkbox"> Lock layout</label>
+    </div>
+    <p id="stats" class="stats"></p>
+  </section>
 
-<main class="layout">
-  <aside class="library" aria-label="Chart library">
-    <h2>Charts</h2>
-    <p class="hint">Drag a chart onto the blanket. On a phone, tap a chart, then tap a spot.</p>
-    <ul id="library"></ul>
-  </aside>
+  <main class="layout">
+    <aside class="library" aria-label="Chart library">
+      <h2>Charts</h2>
+      <p class="hint">Drag a chart onto the blanket. On a phone, tap a chart, then tap a spot.</p>
+      <ul id="library"></ul>
+    </aside>
 
-  <section class="board" aria-label="Blanket">
-    <div class="board-head">
-      <p class="hint">Bottom of the blanket is chart row 1. Drag spots to swap them. Tap a spot to choose a chart.</p>
-      <div class="actions">
-        <button id="clearAll" class="ghost" type="button">Clear all</button>
-        <button id="finish" class="primary" type="button">Finish</button>
+    <section class="board" aria-label="Blanket">
+      <div class="board-head">
+        <p class="hint">Bottom of the blanket is chart row 1. Drag spots to swap them. Tap a spot to choose a chart.</p>
+        <div class="actions">
+          <button id="copyLink" class="ghost" type="button">Copy link to this layout</button>
+          <button id="clearAll" class="ghost" type="button">Clear all</button>
+          <button id="finish" class="ghost" type="button">Written pattern</button>
+          <button id="startTrack" class="primary" type="button">Follow pattern →</button>
+        </div>
+      </div>
+      <div id="lockNote" class="note" hidden>Layout is locked, so it can’t be changed by accident. Untick <b>Lock layout</b> to edit it.</div>
+      <div id="armed" class="armed" hidden></div>
+      <div class="blanket-wrap"><div id="blanket" class="blanket"></div></div>
+      <details id="dataCheck" class="datacheck">
+        <summary>Data check</summary>
+        <div id="dataCheckBody"></div>
+      </details>
+    </section>
+  </main>
+</div>
+
+<!-- ============ FOLLOW-ALONG VIEW ============ -->
+<div id="viewTrack" hidden>
+  <section class="track" aria-label="Follow the pattern">
+    <div id="trackEmpty" class="note" hidden></div>
+    <div id="trackBody">
+      <div class="progress" aria-hidden="true"><div id="progressFill" class="progress-fill"></div></div>
+      <p id="progressText" class="progress-text"></p>
+
+      <div class="row-head">
+        <span id="yarn" class="yarn" aria-hidden="true"></span>
+        <div>
+          <h2 id="rowTitle">Row 1</h2>
+          <p id="rowSub" class="row-sub"></p>
+        </div>
+      </div>
+
+      <p id="sectionLine" class="section-line"></p>
+      <div id="instr" class="instr" role="button" tabindex="0" aria-label="Tap to cross off the next stitch group"></div>
+      <p id="nextLine" class="next-line" aria-live="polite"></p>
+
+      <div class="nav">
+        <button id="prevStep" type="button" class="ghost big">◀ Back</button>
+        <button id="undoTap" type="button" class="ghost big">Undo</button>
+        <button id="nextStep" type="button" class="primary big">Next ▶</button>
+      </div>
+
+      <canvas id="mini" class="mini" aria-label="This chart row with your current row highlighted"></canvas>
+
+      <details class="whole-row">
+        <summary>Whole row as written</summary>
+        <p id="wholeRow" class="mono"></p>
+      </details>
+
+      <div class="track-tools">
+        <form id="gotoForm" class="goto">
+          <label>Go to row <input id="gotoRow" type="number" min="1" inputmode="numeric"></label>
+          <button type="submit" class="ghost">Go</button>
+        </form>
+        <label class="check"><input id="wake" type="checkbox" checked> Keep screen awake</label>
+        <button id="resetProgress" type="button" class="ghost small">Start over</button>
       </div>
     </div>
-    <div id="armed" class="armed" hidden></div>
-    <div class="blanket-wrap"><div id="blanket" class="blanket"></div></div>
-    <details id="dataCheck" class="datacheck">
-      <summary>Data check</summary>
-      <div id="dataCheckBody"></div>
-    </details>
   </section>
-</main>
+</div>
+
+<div id="toast" class="toast" hidden></div>
 
 <dialog id="picker">
   <form method="dialog">
