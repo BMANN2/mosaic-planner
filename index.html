@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mosaic Bookcase Planner</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <h1>Mosaic Bookcase Planner</h1>
+  <p class="sub">Arrange the Zigz Crochet bookcase charts, preview the blanket, then get the written pattern.</p>
+</header>
+
+<section class="controls" aria-label="Blanket settings">
+  <div class="group">
+    <label>Columns <input id="cols" type="number" min="1" max="10" value="4"></label>
+    <label>Chart rows <input id="rows" type="number" min="1" max="12" value="6"></label>
+  </div>
+  <div class="group colours">
+    <label class="swatch">A <input id="colA" type="color" value="#2f5d9e"></label>
+    <label class="swatch">B <input id="colB" type="color" value="#ffffff"></label>
+    <label class="swatch">C <input id="colC" type="color" value="#7a4a2a"></label>
+    <label>Shelves
+      <select id="shelf">
+        <option value="A">Colour A</option>
+        <option value="C">Colour C</option>
+      </select>
+    </label>
+  </div>
+  <div class="group">
+    <label class="check"><input id="symbols" type="checkbox"> Show stitch symbols (X = DC)</label>
+    <label class="check"><input id="names" type="checkbox" checked> Show chart names</label>
+  </div>
+  <p id="stats" class="stats"></p>
+</section>
+
+<main class="layout">
+  <aside class="library" aria-label="Chart library">
+    <h2>Charts</h2>
+    <p class="hint">Drag a chart onto the blanket. On a phone, tap a chart, then tap a spot.</p>
+    <ul id="library"></ul>
+  </aside>
+
+  <section class="board" aria-label="Blanket">
+    <div class="board-head">
+      <p class="hint">Bottom of the blanket is chart row 1. Drag spots to swap them. Tap a spot to choose a chart.</p>
+      <div class="actions">
+        <button id="clearAll" class="ghost" type="button">Clear all</button>
+        <button id="finish" class="primary" type="button">Finish</button>
+      </div>
+    </div>
+    <div id="armed" class="armed" hidden></div>
+    <div class="blanket-wrap"><div id="blanket" class="blanket"></div></div>
+    <details id="dataCheck" class="datacheck">
+      <summary>Data check</summary>
+      <div id="dataCheckBody"></div>
+    </details>
+  </section>
+</main>
+
+<dialog id="picker">
+  <form method="dialog">
+    <h3 id="pickerTitle">Choose a chart</h3>
+    <select id="pickerSelect"></select>
+    <div class="dialog-actions">
+      <button value="clear" class="ghost" type="submit">Clear this spot</button>
+      <button value="cancel" class="ghost" type="submit">Cancel</button>
+      <button value="ok" class="primary" type="submit">Place</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="result" class="result">
+  <div class="result-head">
+    <h3>Written pattern</h3>
+    <div class="dialog-actions">
+      <button id="copy" class="primary" type="button">Copy to clipboard</button>
+      <button id="download" class="ghost" type="button">Download .txt</button>
+      <button id="closeResult" class="ghost" type="button">Close</button>
+    </div>
+  </div>
+  <p id="copyMsg" class="hint" aria-live="polite"></p>
+  <pre id="patternText"></pre>
+</dialog>
+
+<p id="loadError" class="error" hidden></p>
+<script src="app.js"></script>
+</body>
+</html>
